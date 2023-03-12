@@ -1,11 +1,27 @@
 import React from 'react';
+import SearchBar from "./SearchBar.jsx";
+import {
+    BrowserRouter as Router,
+    Link
+  } from "react-router-dom";
 import logo from '../media/logo.png';
 import home from '../media/maison.png'
 
 
+const FD = [
+    { title: 'Ligue 1', value: 2015},
+    { title: 'Premiere League', value: 2021},
+    { title: 'Primera Division', value: 2014},
+    { title: 'Bundesliga', value: 2002},
+    { title: 'Serie A', value: 2019},
+    { title: 'Eredivisie', value: 2003},
+    { title: 'Primeira Liga', value: 2017},
+]
+
+
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
             <a className="navbar-brand" href="#">Jamo'Foot</a>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,69 +33,20 @@ const Navbar = () => {
                         <a className="nav-link active mb-1" aria-current="page" href="/"> <img src={home} className='home' alt="" /></a>
                     </li>
                     <div className='d-flex justify-content-between ms-5 mx-auto'>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link active dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Europe
-                            </a>
-                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a className="dropdown-item" href="#">UEFA Champions league</a></li>
-                                <li><a className="dropdown-item" href="#">UEFA Europa league</a></li>
-                                <li><a className="dropdown-item" href="#">UEFA Conference league</a></li>
-                            </ul>
-                        </li>
-                        <li className="nav-item active dropdown">
-                            <a className="nav-link active dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                France
-                            </a>
-                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a className="dropdown-item" href="#">Ligue 1</a></li>
-                                <li><a className="dropdown-item" href="#">Ligue 2</a></li>
-                                <li><a className="dropdown-item" href="#">Coupe de France</a></li>
-                            </ul>
-                        </li>
                         <li className="nav-item active dropdown">
                             <a className="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Angleterre
+                                1ère divisions
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a className="dropdown-item" href="#">Premiere League</a></li>
-                                <li><a className="dropdown-item" href="#">Championship</a></li>
-                                <li><a className="dropdown-item" href="#">FA cup</a></li>
+                                {FD.map(competition => <li><Link to={`/classement/${competition.value}`} className="dropdown-item"> {competition.title} </Link></li>)}
                             </ul>
                         </li>
-                        <li className="nav-item active dropdown">
-                            <a className="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Espagne
-                            </a>
-                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a className="dropdown-item" href="#">LaLigua</a></li>
-                                <li><a className="dropdown-item" href="#">LaLigua 2</a></li>
-                                <li><a className="dropdown-item" href="#">Coupe du Roi</a></li>
-                            </ul>
-                        </li>
-                        <li className="nav-item active dropdown">
-                            <a className="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Allemagne
-                            </a>
-                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a className="dropdown-item" href="#">Bundesliga serie A</a></li>
-                                <li><a className="dropdown-item" href="#">Bundesliga serie B</a></li>
-                                <li><a className="dropdown-item" href="#">Super Cup</a></li>
-                            </ul>
-                        </li>
-                        <li className="nav-item active dropdown">
-                            <a className="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Italie
-                            </a>
-                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a className="dropdown-item" href="#">serie A</a></li>
-                                <li><a className="dropdown-item" href="#">serie B</a></li>
-                                <li><a className="dropdown-item" href="#">Coupe d'Italie</a></li>
-                            </ul>
-                        </li>
+                        <Link to='/team/favoris' className='nav-link'> Favoris </Link>
                     </div>
                 </ul>
-                <img src={logo} alt="" className='logo_nav' />
+                <div>
+                    <img src={logo} alt="" className='logo_nav' />
+                </div>
             </div>
         </div>
     </nav>
